@@ -1,9 +1,31 @@
 from flask import Flask, render_template
+from datetime import datetime
 
 app = Flask("hello")
 
+
+
+posts = [
+    {
+        "title":"O meu primeiro Post",
+        "body":"Texto do Post",
+        "author":"Feulo",
+        "created": datetime(2022,7,25)
+    },
+    {
+        "title":"O meu segundo Post",
+        "body":"Texto do Post",
+        "author":"Marcio",
+        "created": datetime(2022,7,26)
+    }
+]
+
+
 @app.route("/")
-@app.route("/hello")
+def index():
+    return render_template("index.html", posts=posts)
+
+
 
 def hello():
     return "Hello world"
@@ -14,7 +36,7 @@ def meucontato():
 
 @app.route("/mycontato")
 def mycontato():
-    return render_template('index.html')
+    return render_template('index.html', email="marcio.elx@gmail")
 
 @app.route("/contato")
 def contato():
@@ -29,11 +51,6 @@ def contato():
             <h1>Faculdade Cotemig</h1>   
             <a href= "https://www.cotemig.com">link</a>
 
-            <ol>
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-            </ol>
            
         </body>
     </html>

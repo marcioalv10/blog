@@ -1,20 +1,33 @@
-<html>
-        <head>
-            <title>Contatos</title>
+{% extends "base.html" %}
+{% block title %}
+Pagina inicial
+{% endblock%}
 
-        </head>
-        <body>
-            <h1>Marcos</h1>   
-            <h2>Tecnico em mecanica</h2> 
-            <h1>Faculdade Cotemig</h1>   
-            <a href= "https://www.cotemig.com">link</a>
+{% block content%}
+
+
+                {% for post in posts %}
+               <article class="post">
+                    <header>
+                        <div>
+                            <h1>{{post.title}}</h1>
+                            <div class="about">
+                                by {{post.author}} on {{post.created.strftime('%d-%m-%Y')}}
+                            </div>
+
+                        </div>
+                    </header>
+                    <p class="body">{{post.body}}</p>
+               </article>
+               {% if not loop.last %}
+                <hr>
+                {% endif %}
+                {% endfor %}
+                {% endblock%}
 
             
-            <ol>
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-            </ol>
+
+
+            
            
-        </body>
-    </html>
+    
